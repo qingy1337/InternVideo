@@ -105,7 +105,7 @@ class Transformer(nn.Module):
 class VisionTransformer(nn.Module):
     def __init__(
         self, input_resolution, patch_size, width, layers, heads, output_dim=None, 
-        kernel_size=1, num_frames=8, drop_path=0, checkpoint_num=0, dropout=0.,
+        kernel_size=1, num_frames=9, drop_path=0, checkpoint_num=0, dropout=0.,
         temp_embed=True,
     ):
         super().__init__()
@@ -246,7 +246,7 @@ def load_state_dict(model, state_dict, input_resolution=224, patch_size=16, cent
 @register_model
 def clip_joint_b16(
     pretrained=False, input_resolution=224, kernel_size=1,
-    center=True, num_frames=8, drop_path=0., checkpoint_num=0,
+    center=True, num_frames=9, drop_path=0., checkpoint_num=0,
     dropout=0.,
 ):
     model = VisionTransformer(
@@ -272,7 +272,7 @@ def clip_joint_b16(
 @register_model
 def clip_joint_l14(
     pretrained=False, input_resolution=224, kernel_size=1,
-    center=True, num_frames=8, drop_path=0., checkpoint_num=0,
+    center=True, num_frames=9, drop_path=0., checkpoint_num=0,
     dropout=0.,
 ):
     model = VisionTransformer(
@@ -297,7 +297,7 @@ def clip_joint_l14(
 @register_model
 def clip_joint_l14_336(
     pretrained=True, input_resolution=336, kernel_size=1,
-    center=True, num_frames=8, drop_path=0.
+    center=True, num_frames=9, drop_path=0.
 ):
     raise NotImplementedError
     model = VisionTransformer(
@@ -349,10 +349,8 @@ if __name__ == '__main__':
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
-    num_frames = 8
+    num_frames = 9
 
-    # model = clip_joint_b16(pretrained=True, kernel_size=1, num_frames=8, num_classes=400, drop_path=0.1)
-    # logger.info(model)
     model = clip_joint_l14(pretrained=False)
 
     flops = FlopCountAnalysis(model, torch.rand(1, 3, num_frames, 224, 224))
