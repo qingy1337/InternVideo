@@ -40,7 +40,7 @@ class ViCLIP(nn.Module):
         self.inputs_image_res = 224
         self.vision_encoder_kernel_size = 1
         self.vision_encoder_center = True
-        self.video_input_num_frames = 8
+        self.video_input_num_frames = 9
         self.vision_encoder_drop_path_rate = 0.1
         self.vision_encoder_checkpoint_num = 24
         self.is_pretrain = pretrain
