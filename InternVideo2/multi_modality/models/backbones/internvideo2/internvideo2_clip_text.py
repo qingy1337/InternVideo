@@ -2,7 +2,6 @@ import logging
 import numpy as np
 import torch
 import torch.nn.functional as F
-import peft
 from peft import get_peft_model, LoraConfig, TaskType
 from torch import nn
 from transformers import LlamaForCausalLM, LlamaConfig
