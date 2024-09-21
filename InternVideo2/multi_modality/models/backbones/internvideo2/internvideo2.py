@@ -10,20 +10,8 @@ from functools import partial
 from einops import rearrange
 
 from .pos_embed import get_3d_sincos_pos_embed, get_2d_sincos_pos_embed, get_1d_sincos_pos_embed, interpolate_pos_embed_internvideo2
-from .flash_attention_class import FlashAttention
 
 logger = logging.getLogger(__name__)
-
-try:
-    from flash_attn.modules.mlp import FusedMLP
-except:
-    logger.warn(f'FusedMLP of flash_attn is not installed!!!')
-
-try:
-    from flash_attn.ops.rms_norm import DropoutAddRMSNorm
-except:
-    logger.warn(f'DropoutAddRMSNorm of flash_attn is not installed!!!')
-
 
 class CrossAttention(nn.Module):
     def __init__(
@@ -392,9 +380,9 @@ class PretrainInternVideo2(nn.Module):
             init_values: float = 1e-5,
             qk_normalization: bool = True,
             depth: int = 40,
-            use_flash_attn: bool = True,
-            use_fused_rmsnorm: bool = True,
-            use_fused_mlp: bool = True,
+            use_flash_attn: bool = False,
+            use_fused_rmsnorm: bool = False,
+            use_fused_mlp: bool = False,
             fused_mlp_heuristic: int = 1,
             attn_pool_num_heads: int = 16,
             clip_embed_dim: int = 768,
