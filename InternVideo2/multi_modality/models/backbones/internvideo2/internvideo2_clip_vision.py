@@ -367,7 +367,7 @@ class InternVideo2(nn.Module):
         self.embed_dim = embed_dim
         self.T = num_frames // tubelet_size
         
-        if use_fused_rmsnorm:
+        if False:
             norm_layer_for_blocks = partial(DropoutAddRMSNorm, eps=1e-6, prenorm=True)
         else:
             norm_layer_for_blocks = partial(RMSNorm, eps=1e-6)
