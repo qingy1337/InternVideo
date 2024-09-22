@@ -197,6 +197,8 @@ class InternVideo2_CLIP(nn.Module):
 
         # load vision_encoder
         logger.info(f"Load vision_encoder checkpoint from {vision_ckpt_path}")
+        print("ITS ME")
+        print(vision_ckpt_path)
         vision_ckpt = torch.load(vision_ckpt_path, map_location='cpu')
         if 'module' in vision_ckpt.keys():
             vision_ckpt = vision_ckpt['module']
