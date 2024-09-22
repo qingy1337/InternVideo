@@ -157,7 +157,8 @@ class Attention(nn.Module):
         self.attn_drop = nn.Dropout(attn_drop)
         self.proj = nn.Linear(dim, dim)
         self.proj_drop = nn.Dropout(proj_drop)
-        
+
+        use_flash_attn = False
         self.use_flash_attn = use_flash_attn
         if use_flash_attn:
             self.causal = causal
