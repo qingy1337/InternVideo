@@ -332,7 +332,7 @@ class PatchEmbed(nn.Module):
 
 
 class Linear_Decoder(nn.Module):
-    def __init__(self, in_channels=1024, out_channels=3200, 
+    def __init__(self, in_channels=1024, out_channels=1408, 
                  norm_layer=nn.LayerNorm, clip_norm_type='l2'):
         super().__init__()
         self.clip_norm_type = clip_norm_type
@@ -392,7 +392,7 @@ class PretrainInternVideo2(nn.Module):
             use_checkpoint: bool = False,
             checkpoint_num: int = 0,
             # for unmasked teacher
-            clip_teacher_embed_dim: int = 3200,
+            clip_teacher_embed_dim: int = 1408,
             clip_teacher_final_dim: int = 768, # if 0, not distill final features
             clip_norm_type: str = 'l2',
             clip_return_layer: int = 1,
@@ -701,7 +701,7 @@ def pretrain_internvideo2_1b_patch14_224(config):
 def pretrain_internvideo2_6b_patch14_224(config):
     model = PretrainInternVideo2(
         in_chans=3, img_size=224, patch_size=14,
-        embed_dim=3200, depth=48, num_heads=25, mlp_ratio=4,
+        embed_dim=1408, depth=48, num_heads=25, mlp_ratio=4,
         clip_embed_dim=config.vision_encoder.clip_embed_dim,
         attn_pool_num_heads=16, qkv_bias=False,
         drop_path_rate=0.3,
