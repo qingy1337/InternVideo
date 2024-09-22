@@ -342,7 +342,7 @@ class InternVideo2(nn.Module):
             img_size: int = 224,
             qkv_bias: bool = False,
             drop_path_rate: float = 0.25,
-            embed_dim: int = 1408,
+            embed_dim: int = 384,
             head_drop_path_rate: float = 0.,
             num_heads: int = 16,
             mlp_ratio: float = 4.3637,
@@ -579,7 +579,7 @@ def internvideo2_large_patch14_224(pretrained=False, **kwargs):
 @register_model
 def internvideo2_1B_patch14_224(pretrained=False, **kwargs):
     model = InternVideo2(
-        img_size=224, patch_size=14, embed_dim=1408, 
+        img_size=224, patch_size=14, embed_dim=384, 
         depth=40, num_heads=16, mlp_ratio=48/11, 
         attn_pool_num_heads=16, clip_embed_dim=768,
         **kwargs
