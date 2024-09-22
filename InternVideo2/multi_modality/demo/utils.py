@@ -81,8 +81,8 @@ def setup_internvideo2(config: dict):
         tokenizer = BertTokenizer.from_pretrained(config.model.text_encoder.pretrained)
         model = InternVideo2_Stage2(config=config, tokenizer=tokenizer, is_pretrain=True)
     else:
-        model = InternVideo2_Stage2(config=config, is_pretrain=True)
         tokenizer = model.tokenizer
+        model = InternVideo2_Stage2(config=config, tokenizer=tokenizer, is_pretrain=True)
 
     if config.get('compile_model', False):
         torch.set_float32_matmul_precision('high')
