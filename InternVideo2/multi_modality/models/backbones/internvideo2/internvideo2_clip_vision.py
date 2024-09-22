@@ -341,7 +341,7 @@ class InternVideo2(nn.Module):
             qkv_bias: bool = False,
             drop_path_rate: float = 0.25, # may need ablation
             head_drop_path_rate: float = 0.,
-            embed_dim: int = 1408,
+            embed_dim: int = 1024,
             num_heads: int = 16,
             mlp_ratio: float = 48/11,
             init_values: float = 1e-5, # may need ablation
