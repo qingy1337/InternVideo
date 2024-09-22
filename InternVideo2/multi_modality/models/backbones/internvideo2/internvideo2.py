@@ -695,8 +695,7 @@ def pretrain_internvideo2_1b_patch14_224(config):
         # interpolate_pos_embed_internvideo2(state_dict, model, orig_t_size=8)
         current_model_dict = model.state_dict()
         new_state_dict={k:v if v.size()==current_model_dict[k].size()  else  current_model_dict[k] for k,v in zip(current_model_dict.keys(), loaded_state_dict.values())}
-        model.load_state_dict(new_state_dict, strict=False)
-        message = model.load_state_dict(state_dict, strict=False)
+        message = model.load_state_dict(new_state_dict, strict=False)
     return model
 
 
