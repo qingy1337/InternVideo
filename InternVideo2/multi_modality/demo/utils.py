@@ -77,13 +77,13 @@ def retrieve_text(frames,
     return ret_texts, probs.float().numpy()[0]
 
 
-def setup_internvideo2(config: dict):
+def setup_internvideo2(config: dict, clipconfig: dict = {}):
     if "bert" in config.model.text_encoder.name:
         tokenizer = BertTokenizer.from_pretrained(config.model.text_encoder.pretrained)
         model = InternVideo2_Stage2(config=config, tokenizer=tokenizer, is_pretrain=True)
     else:
-        model = InternVideo2_Stage2(config=config, is_pretrain=True)
-        tokenizer = model.tokenizer
+        tokenizer = ClipTokenizer(clipconfig)
+        model = InternVideo2_Stage2(config=config, tokenizer = tokenizer, is_pretrain=True)
 
     if config.get('compile_model', False):
         torch.set_float32_matmul_precision('high')
