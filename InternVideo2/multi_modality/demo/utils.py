@@ -136,7 +136,7 @@ class InternVideo2_Stage2(nn.Module):
         self.is_pretrain = is_pretrain
         self.vision_width = config.model.vision_encoder.clip_embed_dim
         print(config.model.text_encoder)
-        self.text_width = config.model.text_encoder.embed_dim
+        self.text_width = 512
         self.embed_dim = config.model.embed_dim
 
         # create modules.
