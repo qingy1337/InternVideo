@@ -413,10 +413,11 @@ class PretrainInternVideo2(nn.Module):
         for i in range(clip_return_layer):
             self.return_index.append(depth - int(i * clip_student_return_interval) - 1)
         
-        if use_fused_rmsnorm:
-            norm_layer_for_blocks = partial(DropoutAddRMSNorm, eps=1e-6, prenorm=True)
-        else:
-            norm_layer_for_blocks = partial(RMSNorm, eps=1e-6)
+        # if use_fused_rmsnorm:
+        #     norm_layer_for_blocks = partial(DropoutAddRMSNorm, eps=1e-6, prenorm=True)
+        # else:
+        norm_layer_for_blocks = partial(RMSNorm, eps=1e-6)
+            
         self.norm_layer_for_blocks = norm_layer_for_blocks
         self.patch_embed = PatchEmbed(
             img_size, patch_size, in_chans, embed_dim,
