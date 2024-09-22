@@ -264,7 +264,7 @@ class Block(nn.Module):
         
         self.norm2 = norm_layer(dim)
         mlp_hidden_dim = int(dim * mlp_ratio)
-        if use_fused_mlp:
+        if False:
             self.mlp = FusedMLP(in_features=dim, hidden_features=mlp_hidden_dim, heuristic=fused_mlp_heuristic)
         else:
             self.mlp = Mlp(in_features=dim, hidden_features=mlp_hidden_dim, act_layer=act_layer, drop=drop)
@@ -273,7 +273,7 @@ class Block(nn.Module):
         self.drop_path2 = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         
         self.with_cp = with_cp
-        self.use_fused_rmsnorm = use_fused_rmsnorm
+        self.use_fused_rmsnorm = False
     
     def forward(self, x, residual=None):
         
