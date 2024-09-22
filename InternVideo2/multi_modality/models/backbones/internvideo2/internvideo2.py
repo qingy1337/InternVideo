@@ -372,7 +372,7 @@ class PretrainInternVideo2(nn.Module):
             img_size: int = 224,
             qkv_bias: bool = False,
             drop_path_rate: float = 0.25,
-            embed_dim: int = 1408,
+            embed_dim: int = 1024,
             num_heads: int = 16,
             mlp_ratio: float = 48/11,
             init_values: float = 1e-5,
