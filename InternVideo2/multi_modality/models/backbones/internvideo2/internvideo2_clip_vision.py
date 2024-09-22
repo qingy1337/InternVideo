@@ -91,8 +91,6 @@ class AttentiveBlock(nn.Module):
             dim, num_heads=num_heads, qkv_bias=qkv_bias, qk_scale=qk_scale, attn_drop=attn_drop,
             proj_drop=drop, attn_head_dim=attn_head_dim, out_dim=out_dim)
         
-        if drop_path > 0.:
-            logger.info(f"Use DropPath in projector: {drop_path}")
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
     
     def forward(self, x_q, x_kv, pos_q, pos_k, bool_masked_pos, rel_pos_bias=None):
@@ -364,7 +362,6 @@ class InternVideo2(nn.Module):
         
         assert use_flash_attn == use_fused_rmsnorm == use_fused_mlp, logger.info(
             'use_flash_attn, use_fused_rmsnorm and use_fused_mlp should be consistent')
-        logger.info(mlp_ratio)
         
         self.use_flash_attn = use_flash_attn
         self.embed_dim = embed_dim
@@ -385,14 +382,12 @@ class InternVideo2(nn.Module):
         # stolen from https://github.com/facebookresearch/mae_st/blob/dc072aaaf640d06892e23a33b42223a994efe272/models_vit.py#L65-L73C17
         self.sep_pos_embed = sep_pos_embed
         if sep_pos_embed:
-            logger.info("Use seperable position embedding")
             grid_size = self.patch_embed.grid_size
             self.grid_size = grid_size
             self.pos_embed_spatial = nn.Parameter(torch.zeros(1, grid_size[1] * grid_size[2], embed_dim))
             self.pos_embed_temporal = nn.Parameter(torch.zeros(1, grid_size[0], embed_dim))
             self.pos_embed_cls = nn.Parameter(torch.zeros(1, 1, embed_dim))
         else:
-            logger.info("Use joint position embedding")
             self.pos_embed = nn.Parameter(torch.zeros(1, num_patches + 1, embed_dim))
         
         dpr = [x.item() for x in torch.linspace(0, drop_path_rate, depth)]
@@ -402,8 +397,6 @@ class InternVideo2(nn.Module):
             for idx in range(depth):
                 if idx < checkpoint_num:
                     with_cp_list[idx] = True
-        logger.info(f"Droppath rate: {dpr}")
-        logger.info(f"Checkpoint list: {with_cp_list}")
         
         self.blocks = nn.ModuleList([
             Block(embed_dim, num_heads, mlp_ratio, qkv_bias=qkv_bias,
@@ -430,7 +423,6 @@ class InternVideo2(nn.Module):
         self.fix_init_weight()
 
     def init_pos_embed(self):
-        logger.info("Init pos_embed from sincos pos_embed")
         if self.sep_pos_embed:
             # trunc_normal_(self.pos_embed_spatial, std=.02)
             # trunc_normal_(self.pos_embed_temporal, std=.02)
