@@ -701,7 +701,7 @@ def pretrain_internvideo2_1b_patch14_224(config):
 def pretrain_internvideo2_6b_patch14_224(config):
     model = PretrainInternVideo2(
         in_chans=3, img_size=224, patch_size=14,
-        embed_dim=1408, depth=48, num_heads=25, mlp_ratio=4,
+        embed_dim=1024, depth=48, num_heads=25, mlp_ratio=4,
         clip_embed_dim=config.vision_encoder.clip_embed_dim,
         attn_pool_num_heads=16, qkv_bias=False,
         drop_path_rate=0.3,
