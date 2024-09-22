@@ -332,7 +332,7 @@ class PatchEmbed(nn.Module):
 
 
 class Linear_Decoder(nn.Module):
-    def __init__(self, in_channels=1408, out_channels=3200, 
+    def __init__(self, in_channels=1024, out_channels=3200, 
                  norm_layer=nn.LayerNorm, clip_norm_type='l2'):
         super().__init__()
         self.clip_norm_type = clip_norm_type
