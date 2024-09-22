@@ -71,7 +71,7 @@ model = dict(
     ),
     text_encoder="${TextEncoders[${text_enc}]}",
     multimodal=dict(enable=True),
-    embed_dim=512,
+    embed_dim=1024,
     temp=0.07,
     find_unused_parameters=False
 )
