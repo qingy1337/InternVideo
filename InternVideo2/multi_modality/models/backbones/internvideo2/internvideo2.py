@@ -667,7 +667,7 @@ class PretrainInternVideo2(nn.Module):
 def pretrain_internvideo2_1b_patch14_224(config):
     model = PretrainInternVideo2(
         in_chans=3, img_size=224, patch_size=14,
-        embed_dim=1408, depth=40, num_heads=16, mlp_ratio=48/11,
+        embed_dim=1024, depth=40, num_heads=16, mlp_ratio=48/11,
         clip_embed_dim=config.vision_encoder.clip_embed_dim,
         attn_pool_num_heads=16, qkv_bias=False,
         drop_path_rate=0.25,
