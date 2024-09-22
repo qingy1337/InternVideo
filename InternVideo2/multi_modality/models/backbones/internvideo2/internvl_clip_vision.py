@@ -336,7 +336,7 @@ class InternVL_CLIP(nn.Module):
             img_size: int = 224,
             qkv_bias: bool = False,
             drop_path_rate: float = 0.2,
-            embed_dim: int = 3200,
+            embed_dim: int = 1408,
             num_heads: int = 25,
             mlp_ratio: int = 4,
             init_values: float = 0.1,
