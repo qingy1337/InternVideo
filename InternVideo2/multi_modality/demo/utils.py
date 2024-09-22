@@ -11,6 +11,7 @@ from models.backbones.bert.builder import build_bert
 from models.criterions import get_sim
 from models.backbones.internvideo2.pos_embed import interpolate_pos_embed_internvideo2_new
 from transformers import BertTokenizer
+from models.backbones.internvideo2.mobileclip.tokenizer import ClipTokenizer
 
 
 def _frame_from_video(video):
