@@ -167,7 +167,6 @@ class InternVideo2_CLIP_small(nn.Module):
                      text: str):
         """get the text features for the given text."""
         if text in self.cache_txt:
-            print("Already have text in cache")
             return self.cache_txt[text]
         t_original = text
         with torch.no_grad():
